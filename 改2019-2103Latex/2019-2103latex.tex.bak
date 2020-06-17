@@ -1,0 +1,696 @@
+\documentclass[twoside]{cctart}
+\usepackage{headrule,vatola,amssymb}
+\usepackage{graphicx,multirow,bm}
+\usepackage{amstext}
+\usepackage{booktabs,dcolumn}%关于小数点对齐
+\newcolumntype{z}[1]{D{.}{.}{#1}}%关于小数点对齐
+\usepackage{tabularx}%关于表自动折行
+\usepackage{slashbox}%表格加斜线
+%\usepackage{footmisc,perpage}
+%\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}% 放在导言区
+%=========================Page Format (此部分定义请勿修改)================================
+\setlength{\voffset}{-5mm} \headsep 0.3 true cm \topmargin 0pt
+\oddsidemargin 0pt \footskip 2mm \evensidemargin 0pt \textheight
+24.5 true cm \textwidth 16.5 true cm \setcounter{page}{1}
+\parindent 2\ccwd
+\nofiles
+
+
+\TagsOnRight\baselineskip 12pt
+
+\catcode`@=11 \long\def\@makefntext#1{\parindent 1em\noindent
+\hbox to 0pt{\hss$^{}$}#1} \catcode`\@=12
+
+\catcode`@=11
+\def\evenhead{}
+\def\oddhead{}
+\headheight=8truemm
+% \footheight=0pt
+\def\@evenhead{\pushziti
+  \vbox{\hbox to\textwidth{\rlap{\rm\thepage}\hfil{\evenhead}\llap{}}
+    \protect\vspace{2truemm}\relax
+    \hrule depth0pt height0.15truemm width\textwidth
+  }\popziti}
+\def\@oddhead{\pushziti
+  \vbox{\hbox to\textwidth{\rlap{}{\oddhead}\hfil\llap{\rm\thepage}}
+    \protect\vspace{2truemm}\relax
+    \hrule depth0pt height0.15truemm width\textwidth
+  }\popziti}
+\def\@evenfoot{}
+\def\@oddfoot{}
+\catcode`@=12
+
+\renewcommand{\baselinestretch}{1.2}
+\def\d{\displaystyle} \def\n{\noindent}
+\def\ST{\songti\rm\relax}
+\def\HT{\heiti\bf\relax}
+\def\FS{\fangsong\relax}
+\def\KS{\kaishu\relax}
+\def\sz{\small \zihao{-5}}
+\def\vs{\vspace{0.3cm}}
+\def\ay{\arraycolsep=1.5pt}
+
+\def\SEC#1#2#3{\vspace*{.2in} \begin{center}
+{\LARGE\zihao{3}\HT #1}\\[.2in]
+\zihao{4}\fangsong#2\\[.1in]
+\small\zihao{-5}#3 \end{center}}
+
+\def\ESEC#1#2#3{\vskip.2in \begin{center}
+{\Large \HT #1}\\[.2in]
+\normalsize #2\\[.1in]
+\footnotesize #3 \end{center}}
+
+\def\SUB#1{\vspace{.15in} \leftline{\large\bf\heiti\zihao{-4}#1}
+\vspace{.07in}}
+\def\sub#1{\leftline{\bf\heiti\zihao{5}#1}}
+
+\def\REFERENCE{\vspace*{.2in}
+{\noindent\bf\heiti\zihao{5}参考文献} \vspace*{.1in}}
+%=========================================================================
+\usepackage{epstopdf}
+\begin{document}
+
+%--------------------------页眉-------------------------------------
+\def\evenhead{{\protect\small{\zihao{-5}\songti \hfill 系~ 统~工~程~ 理~ 论~ 与~实~践}
+\hfill{\zihao{-5}\songti 第} \,39\,{\zihao{-5}\songti 卷}}}
+\def\oddhead{{\protect{\zihao{-5}\songti 第}\small \,\,X\,{\zihao{-5}\songti 期}
+\hfill {\small\zihao{-5}\songti{孔庆山,等:中国城市房地产供给结构研究}
+ }\hfill}}
+
+%---------------------------首页页眉---------------------------------
+\vspace*{-13mm} \thispagestyle{empty} \noindent \hbox to
+\textwidth{\small{\zihao{-5}\songti 第}\,\,39\,{\zihao{-5}\songti
+卷 第}\,\,X\,{\zihao{-5}\songti 期}\hfill {\zihao{5}
+系统工程理论与实践}\hfill Vol.39, No.X} \vskip -0.2mm
+\par\noindent
+\hbox to \textwidth{\small 2020 {\zihao{-5}\songti 年}\,\,X
+{\zihao{-5}\songti 月}\hfill Systems Engineering --- Theory \&
+Practice\hfill XXX., 2020} \vskip -0.3mm
+\par\noindent
+\rule[2mm]{\textwidth}{0.5pt}\hspace*{-\textwidth}\rule[1.5mm]{\textwidth}{0.5pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ziju{0.025} \vskip -7mm  \noindent {\small doi:\
+10.12011/1000-6788(2019)01-0001-11 \qquad \qquad {中图法分类号:}\ \ N945 % 中图分类号从《中国图书馆分类法》(第四版)中查得。
+\qquad\qquad{文献标志码:\ \ A}}
+
+%-----------------------脚注--------------------------------------------------
+\footnotetext{{\HT 收稿日期:}\ 2019-09-30} \footnotetext{{\HT
+作者简介:}\ 孔庆山(1987-), 男, 山东曲阜人, 讲师, 管理学博士(后), 研究方向：系统工程、城市与地产开发, E-mail: kongqingshan@sdu.edu.cn.}
+\footnotetext{{\HT 通讯作者:}\ 施建刚（1962-），男，上海人，教授，博士生导师，研究方向：房地产开发管理，E-mail:sjg126com@126.com.}
+ \footnotetext{{\HT 基金项目:}\
+ 国家社科基金一般项目(19BGL274); 中国博士后科学基金资助项目(2017M622226); 山东省自科基金资助项目(ZR201702180105); 山东省社科基金资助项目(17DGLJ06); 山东大学基本科研业务费资助项目（2017GN001）;上海市人民政府决策咨询研究重点项目（2019-A-025-B）}
+\footnotetext{{\HT Foundation item:}\ National Social Science Fund (19BGL274); China Postdoctoral Science Fund (2017M622226); Shandong Natural Science Fund (ZR201702180105); Shandong Social Science Fund (17DGLJ06); Fundamental Research Funds for the Shandong University (2017GN001); Government Policy-making Research Funds for Shanghai(2019-A-025-B)}
+%\footnotetext{{\HT 中文引用格式:}\
+%孔庆山,缪斯林,杨蕙馨,施建刚.中国城市房地产供给结构研究[J]. 系统工程理论与实践,
+%2020, 39(X): 1--10.} \footnotetext{{\HT 英文引用格式:}\ Kong Q S, Miao S L, Yang H X, Shi J G.
+%The Evaluation of Urban Real Estate Supply Structure in China[J]. Systems Engineering --- Theory \& Practice, 2020, 39(X): 1--10.}
+
+%---------------------题目、作者、单位、摘要、关键词, 中图分类号(必须提供)------------------
+%\SEC{中文题目}{作者}{单位}
+\SEC{中国城市房地产供给结构研究}
+{孔庆山$^{1}$,缪斯林$^{2}$,杨蕙馨$^{1}$,施建刚$^{3*}$} {(1. 山东大学\ 管理学院\社会超网络计算与决策模拟实验室, 济南\ 250100; \\ 2. 中国人民大学\ 公共管理学院, 北京\ 100872;\ 3. 同济大学\ 经济与管理学院, 上海\ 200092)}
+
+
+\vskip.05in {\narrower\zihao{5}\fangsong\noindent {\heiti 摘\quad
+要}\ \
+本文在供给侧结构视角下, 分别从产品层面和区域层面测度我国城市房地产供给结构水平, 分析城市住宅-办公-商业的耦合协调关系, 揭示城市房地产供给结构的平衡性、充分性、区域性和时序性特征。通过改进耦合协调度模型对 2005-2017 年的实证结果表明：(1)我国城市房地产供给结构的平衡性较强但充分性较弱, 整体平衡充分性水平偏低且城市差异显著; (2)房地产供给结构的区域性特征明显, 西北部、西南部和东北部城市的平衡充分性弱于东部地区, 国家城市群中心城市的平衡充分性较强; (3)房地产供给结构平衡充分性的城市差异在逐年收窄, 城市房地产供给结构整体趋于平稳健康发展。现阶段提升住宅-办公-商业的协调度将有助于优化我国城市房地产的供给结构。
+
+\vskip.05in \noindent {\heiti 关键词}\ \
+城市房地产; 供给结构; 住宅-办公-商业; 耦合协调度模型
+
+
+}
+
+
+
+%%%%%%%%%%%%%%%英文部分%%%%%%%%%%%%%%%%%%%%%%%
+%\ESEC{英文题目}{作单}{单位}
+\ESEC{The Evaluation of Urban Real Estate Supply Structure in China} {KONG Qingshan$^{1}$, \ MIAO Silin$^{2}$, \ YANG Huixin$^{1}$, \ SHI Jiangang$^{3}$} {(1. Shandong University, School of Management, Shandong Key Laboratory of Social Supernetwork Computation and Decision Simulation, Jinan 250100, China; 2. Renmin University of China, School of Public Administration and Policy, Beijing 100872, China;
+ 3. Tongji University, School of Economics \& Management, Shanghai 200092, China
+)}
+
+
+
+\vskip.05in \rm \noindent {\narrower\small {\bf Abstract}\ \
+From the perspective of supply-side structure, we evaluate the supply structure of urban real estate from the product level and the regional level in China. We reveal the balance feature, adequacy feature, regional feature, and timing characteristic of the urban real estate supply structure by analyzing the coupling and coordination relationship between residential, office and commercial real estate. The coupling coordination model be improved to test the data of 2005-2017, the final results shows that: (1) The balance feature is greater than the adequacy feature, but the balance and adequate degree is relatively low as a whole and appearing standing urban difference; (2) The balance and adequacy of real estate has obvious regional features that the cities in the northwest, southwest, and northeast are weaker than the eastern region, and the central cities of the national urban agglomeration are stronger; (3) The difference between cities is smaller year by year, and the overall trend is that the real estate is getting steadily and healthily. We suggest that improving the coordination between residential, office and commercial at this stage can optimize the supply structure of urban real estate in China.
+
+
+
+\vskip.05in \noindent{\bf Keywords}\ \
+urban real estate; supply structure; residential-office-commercial; coupling coordination de-gree model
+
+
+}
+
+
+\normalsize \normalsize \abovedisplayskip=2.0pt plus 2.0pt minus
+2.0pt \belowdisplayskip=2.0pt plus 2.0pt minus 2.0pt \baselineskip
+16pt
+
+%%%%%%%%%%%%%%%%%%%%%%%注意事项%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 全文所有的标点符号(包括括号、冒号、分号、逗号、句号等)都用`` 英文"中的标点符号, 即``半角"加空格.
+
+%%%%%%%%%%%%%%%%%%%%%%正文%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\SUB{1\ \ 引言}
+
+进入新时代, 我国城市发展已经逐渐由高速发展阶段转向高质量发展阶段, 而房地产的平稳健康发展是城市高质量发展的关键支撑; 进入新时代, 我国社会主要矛盾已经转化为人民日益增长的美好生活需要和不平衡不充分的发展之间的矛盾, 而房地产的平衡充分发展是满足人民日益增长的居住、就业和商业等生活需要的重要保障。然而, 当前房地产供给侧结构性问题突出, 城市房地产是否实现平衡充分发展以及发展是否平稳健康并无定论, 如果缺乏科学判断, 将导致资源错配严重阻碍城市高质量发展, 难以满足人民在居住、就业和商业等方面日益增长的需要, 因此科学研判我国城市房地产供给结构水平至关重要。鉴于此, 本文将在供给侧结构视角下从产品层面和区域层面探究我国城市房地产的供给结构水平, 分析城市住宅-办公-商业的耦合协调关系, 揭示城市房地产供给结构的平衡性、充分性、区域性和时序性特征, 以期对优化城市房地产的供给结构以促进后续房地产平稳健康发展进而支撑城市高质量发展具有一定的指导意义。
+
+在研究问题维度, 城市居住、就业和商业的交互关系及衍生问题日渐突出引起国内外学者的极大关注。Kain$^{[1]}$首先从居住与就业的关系视角提出了“空间错配假说”, 之后引发了大量文献去检验和验证城市居住与就业的空间关系, 已有多篇文献总结了国外学者在城市居住与就业空间关系的研究进展$^{[2-4]}$。随着中国城市的快速发展和重构, 我国学者也逐渐重视居住、就业和商业的空间结构问题, 周江评等学者$^{[5-6]}$相继探讨了国外空间错配理论对转型期中国城市职住空间重构的借鉴意义, 同时, 周素红等学者$^{[7-9]}$检验了居住与商业的空间关系, 申庆喜等$^{[10]}$ 从居住空间视角对长春市城市功能空间耦合进行了研究。现有研究主要通过通勤时间距离和就业可达性等微观指标来间接测度居住与就业的空间关系并检验相关影响因素$^{[11]}$, 采用描述性统计或回归模型进行解释研究需要考虑内生性问题, 即居住与就业互为因果而非单向作用关系$^{[12]}$。Gaube\&Remesch$^{[13]}$ 研究表明城市规划政策直接决定了城市空间结构的形成与演化, 进而对家庭的居住-就业区位产生影响, 刘永健等$^{[14]}$ 对我国城市住宅、商服、工业三类建设用地资源错配程度进行了测算, 谢东水$^{[15]}$发现土地供给结构扭曲是中国城市化滞后的基础性原因, 并且土地资源错配阻碍了城市经济高质量发展$^{[16]}$, Horner\&Marion $^{[17]}$ 提出通过政策可以引导土地利用决策从而促进区域的职住平衡。通过对已有文献的梳理可见, 从空间结构视角来揭示城市居住、就业与商业的交互关系有助于促进城市职住和商住的平衡, 而城市规划和土地供给直接决定了城市的空间结构, 房地产的供给结构更是其直接体现。现有房地产供给结构的研究主要集中分析住宅地产的供给结构问题$^{[18-21]}$, 余亮亮和蔡银莺$^{[22]}$已证实基础设施和工业用地比例的增加对住宅价格影响更大。因此, 以城市房地产供给结构作为新的切入视角研究城市住宅-办公- 商业的耦合协调关系, 既可以在区域宏观层面反映城市居住、就业和商业的交互程度, 还可以在产品供给层面反映城市土地资源配置状况。
+
+在研究方法维度, 为了系统研究城市房地产的供给结构水平, 本文使用并改进耦合协调度模型作为研究工具分析城市住宅-办公-商业的交互关系。在物理学中$^{[23]}$, 耦合指多个系统通过相互作用传递能量的过程, 耦合性指系统之间存在相互作用或相互依赖的关系, 耦合系数用以衡量系统间耦合性的强度, 耦合系数越大表明系统间的耦合性越强, 反之, 耦合系数越小表明系统越独立。人文社会学领域的学者借鉴耦合的概念并模仿耦合系数的模型结构, 构建了耦合度模型意图测量系统间耦合性的强度$^{[24]}$, 又通过构建协调度模型反映系统间的协调程度, 最终在两者基础上构建了耦合协调度模型评价系统间交互耦合的协调程度$^{[25]}$。虽然耦合协调度模型已在人文地理$^{[26-27]}$和社会经济$^{[28-29]}$ 等领域广泛应用, 但其科学严谨性备受质疑$^{[30]}$: 一是耦合协调度实质上是对综合评价结果的再评价, 而指标体系与评价方法的严谨性直接决定了耦合协调度测算结果的准确性; 二是协调度模型一直没有找到有效的赋权方法, 平均赋权$^{[24-27]}$ 或随意赋权$^{[28-30]}$将导致评价结果失真, 无法真实反映子系统协调关系对系统整体的贡献程度; 三是耦合协调度模型只是在形式上借鉴物理耦合概念及耦合系数模型, 而对于模型性质与系统内涵缺乏深层解析。鉴于此, 本文首先依据PSR评价模型$^{[31]}$的思维逻辑构建评价指标体系全面反映城市房地产供给过程动态信息, 并使用复相关系数法$^{[32]}$在不改变原有指标体系有机整体的基础上兼具降低相关性和动态可变性的优势; 然后使用优化赋权法改进协调度模型使其可以反映系统的涌现性、目的性和动态性; 最后分别从模型性质与系统内涵解析新耦合协调度模型的解释功能, 使其可以充分揭示房地产供给结构的平衡性、充分性、区域性和时序性特征。总之, 本文综合PSR 指标体系和复相关系数赋权法及改进耦合协调度模型的研究方法优势, 可以系统分析我国城市房地产的供给结构水平。
+
+在实践探索维度, 城市住宅-办公-商业的协调发展日益得到城市管理者的重视。刘太格在新加坡规划实践中特别强调住宅建设要和城市规划紧密结合, 提倡住宅和商业相辅相成; 施建刚等$^{[33]}$指出住宅地产和商业地产应与所在城市的人口、经济、环境和社会耦合协调发展，上海特别在《上海市城市总体规划(2016-2040)》 中明确提出要合理安排居住用地布局及其配套设施建设, 促进职住均衡发展, 探索商业、办公、居住等用地的复合开发; 黄奇帆结合在重庆的实践探索, 认为应按人均30-40平方米规划城市住宅总量, 每2 万元GDP 配建1平方米写字楼, 每2万元商业零售额配建1平方米商贸设施, 实现各类房产建设的总量平衡。这些有益的实践探索促使我们探究中国城市房地产供给结构水平, 从城市住宅-办公-商业系统的耦合协调关系入手揭示我国城市房地产供给结构的平衡性、充分性、区域性和时序性特征。本文的测算结果也显示, 上海和重庆的城市房地产供给结构水平远高于国内其他城市, 重庆近几年的发展趋势尤为凸出, 得益于这些城市协调发展管理理念。
+
+综上, 本文的研究贡献主要体现在以下三个方面: 其一, 在房地产供给结构视角分别从产品层面和区域层面测度城市住宅-办公-商业的耦合协调关系, 是对城市空间错配和土地供给结构扭曲及房地产供给结构优化相关研究的继承和拓展; 其二, 提出耦合协调度模型的优化赋权方法并赋予其新的解释功能, 这是对耦合协调度模型方法的创新和发展; 其三, 创新性的探究城市房地产供给结构的平衡性、充分性、区域性和时序性特征, 为优化城市房地产供给结构以促进房地产平稳健康发展提供可资借鉴的决策依据。
+
+\SUB{2\ \ 研究模型与方法}
+
+
+\sub{2.1\ \ 系统评价指标体系}
+
+城市房地产系统是由相互作用和相互依赖的住宅地产、办公地产和商业地产等子系统结合而成, 具有特定供给功能以满足人民生活需要支撑城市高质量发展为目的的有机整体。城市房地产作为复杂系统具有整体性、相关性、层次性和动态性等系统特征, 使用单一指标难以刻画城市房地产系统的供给特征。城市房地产系统指标体系的构建是测度供给结构水平的前提和基础, 需将表征其供给能力的多个相互相关而又相互独立的指标构成具有内在结构的有机整体。本文依据PSR评价模型$^{[31]}$ 的思维逻辑来构建城市房地产的评价指标体系, 通过这种具有内在结构的指标体系既可以反映城市房地产系统供给过程动态信息, 还可以支撑分析产品和区域层面的供给结构关系。考虑到指标数据的可获得性与可比性, 城市房地产系统PSR指标体系如表1所示: 供给压力指标(Supply Pressure)为前置房地产开发压力指标, 包括施工面积和新开工面积; 供给状态指标(Supply State)为中置房地产开发状态指标, 包括竣工面积、竣工房屋价值、竣工套数和待售面积; 供给响应指标(Supply Response)为后置房地产供给的市场需求响应指标, 包括销售面积、销售价格和销售额。
+
+为了对城市房地产供给结构在产品层面与区域层面做出综合评价, 需要指标体系具有一致性, 便于不同城市的横向对比与不同时间的纵向比较。城市房地产系统指标体系作为一个有机整体要求各评价指标相关又相互独立, 而相关系数为零是独立性的必要条件, 但评价指标之间的相关性一般难以避免, 如销售价格、销售面积与销售额之间存在显著的相关关系。指标之间的相关性会产生信息重叠夸大某些指标在评价结果中的作用程度使评价结果失真, 而完全消除指标之间的相关性过度追求独立性会使评价对象的某些关键属性信息缺失造成评价结果失真。如果采用相关分析法、主成分分析法、因子分析法等技术方法剔除高度相关的指标, 人为精简指标体系虽可以消除相关性的影响, 但会产生信息缺失无法全面反映系统的供给能力。因此, 需要选择适用的评价方法在不改变指标体系有机整体在逻辑上的隐性相关性的同时, 尽量降低在数量上的显现相关性产生的不良影响。此外, 城市房地产系统是动态发展的, 每一阶段都会呈现出不同的供给特征, 这就需要评价方法随着评价范围和评价时点的变化具有动态可变性。总之, 对城市房地产供给结构做出全面客观的综合评价, 需要在不改变原有指标体系有机整体的基础上, 使评价方法兼具降低相关性和动态可变性的优势。
+
+\vspace{5mm}
+\begin{center}{\sz
+{\textbf{表1\ \  城市房地产系统PSR指标体系}}\\
+\begin{tabular}{cccccc}
+\toprule
+系统 &
+  子系统 &
+  指标类型 &
+  指标名称 &
+  指标单位 &
+  代码 \\ \midrule
+\multirow{36}{*}{\begin{tabular}[c]{@{}c@{}}城\\市\\ 房\\地\\ 产\\系\\ 统\end{tabular}} &
+  \multirow{11}{*}{\begin{tabular}[c]{@{}c@{}}住宅地产\\ 子系统\\ ${{x}_{ij}}\left( h \right)$\end{tabular}} &
+  \multirow{2}{*}{\begin{tabular}[c]{@{}c@{}}供给压力指标\end{tabular}} &
+  住宅地产新开工面积 &
+  平方米 &
+  $x_1$ \\ \cmidrule(r){4-6}
+ &
+   &
+   &
+  住宅地产施工面积 &
+  平方米 &
+ $ x_2$ \\ \cmidrule(r){3-6}
+ &
+   &
+  \multirow{5}{*}{\begin{tabular}[c]{@{}c@{}}供给状态指标\end{tabular}} &
+  住宅地产竣工面积 &
+  平方米 &
+ $ x_3$ \\ \cmidrule(r){4-6}
+ &
+   &
+   &
+  住宅地产竣工房屋价值 &
+  万元 &
+  $x_4$ \\ \cmidrule(r){4-6}
+ &
+   &
+   &
+  住宅地产竣工套数 &
+  套 &
+ $ x_5$ \\ \cmidrule(r){4-6}
+ &
+   &
+   &
+  住宅地产待售面积 &
+  平方米 &
+ $ x_6 $\\ \cmidrule(r){3-6}
+ &
+   &
+  \multirow{3}{*}{供给响应指标} &
+  住宅地产销售面积 &
+  平方米 &
+  $x_7$ \\ \cmidrule(r){4-6}
+ &
+   &
+   &
+  住宅地产销售额 &
+  万元 &
+  $x_8$ \\ \cmidrule(r){4-6}
+ &
+   &
+   &
+  住宅地产销售价格 &
+  元/平方米 &
+  $x_9 $\\ \cmidrule(r){2-6}
+ &
+  \multirow{11}{*}{\begin{tabular}[c]{@{}c@{}}办公地产\\ 子系统\\ ${{x}_{ij}}\left( o \right)$\end{tabular}} &
+  \multirow{2}{*}{供给压力指标} &
+  办公地产新开工面积 &
+  平方米 &
+  $x_{10}$ \\ \cmidrule(r){4-6}
+ &
+   &
+   &
+  办公地产施工面积 &
+  平方米 &
+  $x_{11}$ \\ \cmidrule(r){3-6}
+ &
+   &
+  \multirow{4}{*}{供给状态指标} &
+  办公地产竣工面积 &
+  平方米 &
+  $x_{12}$ \\ \cmidrule(r){4-6}
+ &
+   &
+   &
+  办公地产竣工房屋价值 &
+  万元 &
+  $x_{13}$ \\ \cmidrule(r){4-6}
+ &
+   &
+   &
+  办公地产待售面积 &
+  平方米 &
+ $ x_{14}$ \\ \cmidrule(r){3-6}
+ &
+   &
+  \multirow{3}{*}{供给响应指标} &
+  办公地产销售面积 &
+  平方米 &
+  $x_{15}$ \\ \cmidrule(r){4-6}
+ &
+   &
+   &
+  办公地产销售额 &
+  万元 &
+  $x_{16}$ \\ \cmidrule(r){4-6}
+ &
+   &
+   &
+  办公地产销售价格 &
+  元/平方米 &
+  $x_{17}$ \\ \cmidrule(r){2-6}
+ &
+  \multirow{11}{*}{\begin{tabular}[c]{@{}c@{}}商业地产\\ 子系统\\ ${{x}_{ij}}\left( c \right)$\end{tabular}} &
+  \multirow{2}{*}{供给压力指标} &
+  商业地产新开工面积 &
+  平方米 &
+  $x_{18}$ \\ \cmidrule(r){4-6}
+ &
+   &
+   &
+  商业地产施工面积 &
+  平方米 &
+  $x_{19}$ \\ \cmidrule(r){3-6}
+ &
+   &
+  \multirow{5}{*}{供给状态指标} &
+  商业地产竣工面积 &
+  平方米 &
+  $x_{20}$ \\ \cmidrule(r){4-6}
+ &
+   &
+   &
+  商业地产出租面积 &
+  平方米 &
+  $x_{21}$ \\ \cmidrule(r){4-6}
+ &
+   &
+   &
+  商业地产竣工房屋价值 &
+  万元 &
+  $x_{22}$ \\ \cmidrule(r){4-6}
+ &
+   &
+   &
+  商业地产待售面积 &
+  平方米 &
+  $x_{23}$ \\ \cmidrule(r){3-6}
+ &
+   &
+  \multirow{3}{*}{供给响应指标} &
+  商业地产销售面积 &
+  平方米 &
+  $x_{24}$ \\ \cmidrule(r){4-6}
+ &
+   &
+   &
+  商业地产销售额 &
+  万元 &
+  $x_{25}$ \\ \cmidrule(r){4-6}
+ &
+   &
+   &
+  商业地产销售价格 &
+  元/平方米 &
+  $x_{26}$ \\ \bottomrule
+\end{tabular}}
+\end{center}\vspace{7mm}
+
+
+\sub{2.2\ \ 复相关系数评价方法}
+
+复相关系数是对一个变量与其他变量之间相关性程度的度量, 其可以将城市房地产系统PSR指标体系中的所有评价指标包含在内, 也可以分别分析城市房地产各子系统中指标之间的相关性程度, 该值会随着评价对象的范围、评价指标的数量和评价时点的变化而动态变化。因此, 使用复相关系数确定指标权重的评价方法可以降低指标相关性对评价结果产生的不良影响, 同时还可以根据不同范围和不同时点动态调整指标权重, 该评价方法兼具降低相关性和动态可变性的优势。本文使用复相关系数法分别对住宅地产子系统、办公地产子系统和商业地产子系统的供给能力做出综合评价, 具体模型与计算步骤如下:
+
+\sub{\textcircled{1}\ \  指标无量纲化处理}
+首先对原始数据采用极差标准化进行无量纲化处理, 消除各指标间数量单位差异, 使指标数值落于 区间, 便于对不同城市和不同时点做出综合评价和横向对比。
+\begin{equation}
+\left\{ \begin{aligned}
+  & {{\mu }^{+}}_{ij}=\frac{{{x}_{ij}}-\min \left( {{x}_{j}} \right)}{\max \left( {{x}_{j}} \right)-\min \left( {{x}_{j}} \right)},\ \ \ {{x}_{j}\text{具有正功效}}; \\
+ & {{\mu }^{-}}_{ij}=\frac{\max \left( {{x}_{j}} \right)-{{x}_{ij}}}{\max \left( {{x}_{j}} \right)-\min \left( {{x}_{j}} \right)},\ \ \ {{x}_{j}\text{具有负功效}}. \\
+\end{aligned} \right.
+\end{equation}
+
+上式中${{x}_{ij}}$表示第$i$个城市的第j个指标值; ${{\mu }^{+}}_{ij}$为第$i$个城市的第$j$ 个正功效指标对系统整体的贡献程度; ${{\mu }^{-}}_{ij}$ 为第$i$ 个城市的第$j$个负功效指标对系统整体的损失程度。对原始数据处理得到城市$i$的标准化评价矩阵,
+\begin{equation}
+{{\mu }_{ij}}=\left[ \begin{matrix}
+   {{\mu }_{11}} & {{\mu }_{12}} & ... & {{\mu }_{1n}}  \\
+   {{\mu }_{21}} & {{\mu }_{22}} & ... & {{\mu }_{2n}}  \\
+   ... & ... & ... & ...  \\
+   {{\mu }_{m1}} & {{\mu }_{m2}} & ... & {{\mu }_{mn}}  \\
+\end{matrix} \right].
+\end{equation}
+
+
+\sub{\textcircled{2}\ \  计算相关系数矩阵}
+
+计算评价矩阵${{\mu }_{ij}}$的协方差${{S}_{ij}}$ 进而得到其相关系数矩阵$R$, 其中相关系数${{r}_{ij}}$为指标之间的相关性程度且主对角线元素为1。
+\begin{equation}
+{{S}_{ij}}=\frac{1}{n}\sum\limits_{i=1}^{n}{\left( {{\mu }_{iu}}-{{\overline{\mu }}_{u}} \right)\left( {{\mu }_{iv}}-{{\overline{\mu }}_{v}} \right)},\ \ \ \ \ u\ne v,u,v=1,2......m.
+\end{equation}
+\begin{equation}
+R=\left[ {{r}_{ij}} \right],{{r}_{ij}}\text{=}\frac{{{S}_{ij}}}{\sqrt{{{S}_{ii}}{{S}_{jj}}}}.
+\end{equation}
+
+\sub{\textcircled{3}\ \  计算各指标的复相关系数权重}
+
+首先, 将相关系数矩阵R进一步表示如下, 其中${{R}_{-j}}$为除去指标${{\mu }_{j}}$的相关系数矩阵,
+\begin{equation}
+R=\left[ \begin{matrix}
+   {{R}_{-j}} & {{r}_{j}}  \\
+   r_{j}^{T} & 1  \\
+\end{matrix} \right].
+\end{equation}
+
+然后, 通过以下计算公式可得$\rho _{j}^{2}$, 其中复相关系数${{\rho }_{j}}=\rho \left( {{\mu }_{j}}\left| {{\mu }_{1}},{{\mu }_{2}},...,{{\mu }_{j-1}},{{\mu }_{j+1}},...,{{\mu }_{n}} \right. \right)$为指标${{\mu }_{j}}$与其余n-1个指标之间的线性相关程度,
+\begin{equation}
+\rho _{j}^{2}=r_{j}^{T}R_{-j}^{-1}{{r}_{j}},j=1,2,...,n.
+\end{equation}
+
+
+最后, 对复相关系数的倒数进行归一化处理得到各评价指标的复相关系数权重为,
+\begin{equation}
+{{\lambda }_{j}}=\frac{{{\left| {{\rho }_{j}} \right|}^{-1}}}{\sum\limits_{j=1}^{n}{{{\left| {{\rho }_{j}} \right|}^{-1}}}}.
+\end{equation}
+
+\sub{\textcircled{4}\ \  计算各指标权重求得综合评价值}
+
+代入复相关系数权重求得城市$i$的住宅地产-商业地产-办公地产的供给能力综合评价值分别为,
+\begin{equation}
+\left\{ \begin{aligned}
+  & {{Z}_{i}}\left( h \right)=\sum\limits_{j=1}^{h}{{{\mu }_{ij}}{{\lambda }_{j}},} \\
+ & {{Z}_{i}}\left( o \right)=\sum\limits_{j=h+1}^{o}{{{\mu }_{ij}}{{\lambda }_{j}},} \\
+ & {{Z}_{i}}\left( c \right)=\sum\limits_{j=o+1}^{n}{{{\mu }_{ij}}{{\lambda }_{j}}.} \\
+\end{aligned} \right.
+\end{equation}
+
+
+\sub{2.3\ \  改进耦合协调度模型}
+
+耦合协调度模型${{D}_{i}}$由耦合度模型${{C}_{i}}$ 与协调度模型$T$组成, 借鉴已有研究$^{[26-28]}$, 三个子系统的耦合协调度模型一般形式如下,
+\begin{equation}
+\begin{aligned}
+  & {{C}_{i}}=\sqrt[3]{\frac{{{Z}_{i}}\left( h \right)\cdot {{Z}_{i}}\left( o \right)\cdot {{Z}_{i}}\left( c \right)}{{{\left( \frac{{{Z}_{i}}\left( h \right)+{{Z}_{i}}\left( o \right)+{{Z}_{i}}\left( c \right)}{3} \right)}^{3}}}}, \\
+ & {{T}_{i}}={{Z}_{i}}\left( h \right)\cdot {{w}_{i}}\left( h \right)+{{Z}_{i}}\left( o \right)\cdot {{w}_{i}}\left( o \right)+{{Z}_{i}}\left( c \right)\cdot {{w}_{i}}\left( c \right), \\
+ & {{D}_{i}}=\sqrt{{{C}_{i}}\cdot {{T}_{i}}}. \\
+\end{aligned}
+\end{equation}
+
+
+\sub{\textcircled{1}\ \  耦合度模型${{C}_{i}}$反映系统结构平衡性}
+
+从模型性质来看, 耦合度模型${{C}_{i}}$实际为各子系统的几何平均数与算术平均数的比值, 取值范围为${{C}_{i}}\in \left[ 0,1 \right]$。 根据均值定理, 当且仅当各子系统的值相等时, 耦合度达到最大值$\max {{C}_{i}}=1$, 否则随着子系统差异增大${{C}_{i}}$将减小, 某一子系统的差异将会使耦合度${{C}_{i}}$降低, 所以该模型有可能产生“一丑遮百俊”的片面评价。从系统内涵来看, 耦合度${{C}_{i}}$ 越大表明各子系统越平衡, 所以${{C}_{i}}$可以反映城市住宅-办公-商业地产的平衡性, 可以揭示城市房地产供给结构的平衡性水平。
+
+\sub{\textcircled{2}\ \  协调度模型${{T}_{i}}$反映系统结构充分性}
+
+从模型性质来看, 协调度模型${{T}_{i}}$为各子系统的线性加权, 现有研究$^{[25-27]}$一般主观赋予均等的权重系数使协调度模型实际变为各子系统的算术平均数, 即$\overline{{{T}_{i}}}=\frac{{{Z}_{i}}\left( h \right)+{{Z}_{i}}\left( o \right)+{{Z}_{i}}\left( c \right)}{3}$。这种线性加和协调度模型$\overline{{{T}_{i}}}$有明显缺陷: 一是忽视涌现性, 系统必需具有涌现性产生出整体具有而还原到部分所不具有的功能, 而系统整体功能并不等于各部分功能简单加和, 这就要求协调度模型具有非加和性才能反映系统的涌现性; 二是缺乏目的性, 系统以实现某种特定功能为目的, 而等比例数量结构只能体现系统加和功能性, 这就需要协调度模型将子系统在其解空间上优化组合以体现系统结构功能性才能反映系统目的性; 三是没有动态性, 系统功能随着子系统的状态和功能的变化而动态变化, 而预先给定的静态权重无法根据子系统的变化而动态调整, 这就需要协调度模型的权重系数具有动态可变性以体现系统的动态性。总之, 这些模型缺陷将导致原有协调度模型的评价结果无法真实反映各子系统协调所产生的系统结构功能性。
+
+为了弥补以上不足, 本文以系统整体功能最优为目标, 提出优化赋权法改进协调度模型反映系统的结构功能性。协调度${{T}_{i}}$写成向量形式为${{T}_{i}}={{Z}_{i}}\cdot {{w}_{i}}$, 并令权重向量的L2范数满足单位约束条件${{\left\| {{w}_{i}} \right\|}_{2}}=1$, 其解空间恰为三维空间中一个半径为1 的球体, 以系统整体功能最优为目标构建协调度优化模型如下,
+\begin{equation}
+\left\{ \begin{aligned}
+  & \max {{T}_{i}}={{Z}_{i}}\cdot {{w}_{i}} \\
+ & s.t.\ \ \ \ \ {{w}_{i}}^{T}{{w}_{i}}=1\  \\
+\end{aligned} \right.
+\end{equation}
+
+
+该协调度优化模型的Lagrange函数$L\left( {{w}_{i}},\lambda  \right)={{Z}_{i}}\cdot {{w}_{i}}+\lambda \left( {{w}_{i}}^{T}{{w}_{i}}-1 \right)$, 并令$\frac{\partial L}{\partial {{w}_{i}}}={{Z}_{i}}+2\lambda {{w}_{i}}=0,\ \ \frac{\partial L}{\partial \lambda }={{w}_{i}}^{T}{{w}_{i}}-1=0$, 求得
+\begin{equation}
+{{\lambda }^{*}}=-\frac{\sqrt{{{Z}_{i}}{{Z}_{i}}^{T}}}{2};{{w}_{i}}^{*}=\frac{{{Z}_{i}}}{\sqrt{{{Z}_{i}}{{Z}_{i}}^{T}}}.
+\end{equation}
+
+
+由于其海森矩阵恒为负定矩阵, 所以${{w}_{i}}^{*}$ 为函数${{T}_{i}}$的极大值点, 可得各子系统的最优协调权重系数分别为,
+\begin{equation}
+\left\{ \begin{aligned}
+  & w_{i}^{*}\left( h \right)=\frac{{{Z}_{i}}\left( h \right)}{\sqrt{{{Z}_{i}}{{\left( h \right)}^{2}}+{{Z}_{i}}{{\left( o \right)}^{2}}+{{Z}_{i}}{{\left( c \right)}^{2}}}}, \\
+ & w_{i}^{*}\left( o \right)=\frac{{{Z}_{i}}\left( o \right)}{\sqrt{{{Z}_{i}}{{\left( h \right)}^{2}}+{{Z}_{i}}{{\left( o \right)}^{2}}+{{Z}_{i}}{{\left( c \right)}^{2}}}}, \\
+ & w_{i}^{*}\left( c \right)=\frac{{{Z}_{i}}\left( c \right)}{\sqrt{{{Z}_{i}}{{\left( h \right)}^{2}}+{{Z}_{i}}{{\left( o \right)}^{2}}+{{Z}_{i}}{{\left( c \right)}^{2}}}}. \\
+\end{aligned} \right.
+\end{equation}
+
+将其代入协调度模型可得城市房地产系统的改进协调度模型为,
+\begin{equation}
+T_{i}^{*}=\sqrt{{{Z}_{i}}{{\left( h \right)}^{2}}+{{Z}_{i}}{{\left( o \right)}^{2}}+{{Z}_{i}}{{\left( c \right)}^{2}}}.
+\end{equation}
+
+从模型性质来看, 通过优化赋权得到的协调度模型实际变为各子系统构成的三维空间中的欧氏距离, 由柯西不等式可知平方平均数大于等于算术平均数, 故$T_{i}^{*}>\overline{{{T}_{i}}}$, 且协调度的取值范围为$T_{i}^{*}\in \left[ 0,\sqrt{3} \right]$。 改进协调度模型$T_{i}^{*}$弥补了原有线性加和协调度模型的缺陷: 一是$T_{i}^{*}$具有非加和性更能反映系统的涌现性; 二是$T_{i}^{*}$以系统整体功能最优为目标将子系统在解空间上优化组合体现了系统的功能性; 三是$T_{i}^{*}$的权重系数具有动态可变性体现了系统的动态性。但是, 改进协调度模型$T_{i}^{*}$对子系统中极端值的影响具有明显的放大作用, 某一子系统功能越强则会分配给越高的权重系数, 产生“一俊遮百丑”的片面结论。从系统内涵来看, 改进协调度模型$T_{i}^{*}$体现了子系统协调对系统整体的贡献程度, 协调度越高表明各子系统协调越充分, 所以$T_{i}^{*}$可以反映城市住宅-办公-商业地产的协调性, 可以揭示城市房地产供给结构的充分性水平。
+
+
+\sub{\textcircled{3}\ \  耦合协调度模型反映平衡充分性}
+
+将耦合度${{C}_{i}}$与协调度$T_{i}^{*}$代入耦合协调度模型, 最终得到改进的耦合协调度模型为,
+\begin{equation}
+D_{i}^{*}=\sqrt{\frac{3\sqrt{{{Z}_{i}}{{\left( h \right)}^{2}}+{{Z}_{i}}{{\left( o \right)}^{2}}+{{Z}_{i}}{{\left( c \right)}^{2}}}\cdot \sqrt[3]{{{Z}_{i}}\left( h \right)\cdot {{Z}_{i}}\left( o \right)\cdot {{Z}_{i}}\left( c \right)}}{{{Z}_{i}}\left( h \right)+{{Z}_{i}}\left( o \right)+{{Z}_{i}}\left( c \right)}}.
+\end{equation}
+
+从模型性质来看, 耦合协调度模型为耦合度${{C}_{i}}$与协调度$T_{i}^{*}$的几何平均数, 从而降低了子系统中极端值对最终结果的不良影响, 避免了耦合度模型“一丑遮百俊”和协调度模型“一俊遮百丑”的片面结论。从系统内涵来看, 耦合协调度模型体现了子系统交互耦合的协调程度, 所以$D_{i}^{*}$可以综合反映城市住宅-办公- 商业地产的平衡性与协调性, 可以揭示城市房地产供给结构的平衡充分性水平。
+
+\SUB{3\ \ 城市房地产供给结构实证}
+
+本文选取2006-2018年《中国房地产统计年鉴》公开的指标数据, 运用MATLAB软件对35个大中城市的住宅地产、商业地产和办公地产的供给能力进行综合评价, 进一步得出各城市房地产系统的耦合度、协调度与耦合协调度, 揭示城市房地产供给结构的平衡性特征、充分性特征、区域性特征和时序性特征, 最终计算结果如表2 和表3所示。
+\vspace{5mm}
+\begin{center}{\sz
+{\textbf{表2\ \  2017年35个大中城市住宅-商业-办公供给能力评价值}}\\
+\begin{tabular}{@{}cccccccccccccc@{}}
+\toprule
+城市 & 住宅    & 排名 & 商业    & 排名 & 办公    & 排名 & 城市   & 住宅    & 排名 & 商业    & 排名 & 办公    & 排名 \\ \midrule
+上海 & 0.195 & 2  & 0.171 & 2  & 0.258 & 1  & 南昌   & 0.051 & 25 & 0.047 & 20 & 0.044 & 19 \\
+北京 & 0.127 & 6  & 0.120 & 4  & 0.227 & 2  & 宁波   & 0.081 & 15 & 0.048 & 19 & 0.043 & 20 \\
+杭州 & 0.131 & 5  & 0.099 & 5  & 0.191 & 3  & 济南   & 0.051 & 24 & 0.032 & 25 & 0.041 & 21 \\
+深圳 & 0.084 & 14 & 0.069 & 10 & 0.138 & 4  & 长春   & 0.055 & 22 & 0.050 & 16 & 0.032 & 22 \\
+成都 & 0.139 & 4  & 0.161 & 3  & 0.122 & 5  & 贵阳   & 0.026 & 30 & 0.035 & 24 & 0.032 & 23 \\
+广州 & 0.106 & 10 & 0.075 & 9  & 0.109 & 6  & 石家庄  & 0.039 & 26 & 0.026 & 28 & 0.030 & 24 \\
+郑州 & 0.150 & 3  & 0.079 & 7  & 0.100 & 7  & 南宁   & 0.053 & 23 & 0.026 & 30 & 0.028 & 25 \\
+重庆 & 0.297 & 1  & 0.270 & 1  & 0.097 & 8  & 太原   & 0.030 & 29 & 0.018 & 35 & 0.024 & 26 \\
+武汉 & 0.125 & 7  & 0.068 & 11 & 0.094 & 9  & 兰州   & 0.017 & 33 & 0.018 & 34 & 0.022 & 27 \\
+厦门 & 0.032 & 28 & 0.028 & 27 & 0.092 & 10 & 银川   & 0.034 & 27 & 0.036 & 23 & 0.022 & 28 \\
+西安 & 0.120 & 9  & 0.076 & 8  & 0.073 & 11 & 乌鲁木齐 & 0.023 & 32 & 0.023 & 32 & 0.022 & 29 \\
+天津 & 0.123 & 8  & 0.065 & 12 & 0.072 & 12 & 海口   & 0.025 & 31 & 0.031 & 26 & 0.021 & 30 \\
+青岛 & 0.091 & 11 & 0.063 & 13 & 0.067 & 13 & 哈尔滨  & 0.072 & 17 & 0.048 & 18 & 0.020 & 31 \\
+合肥 & 0.063 & 20 & 0.053 & 15 & 0.065 & 14 & 西宁   & 0.003 & 35 & 0.019 & 33 & 0.017 & 32 \\
+福州 & 0.066 & 18 & 0.042 & 21 & 0.062 & 15 & 大连   & 0.055 & 21 & 0.026 & 29 & 0.015 & 33 \\
+长沙 & 0.087 & 13 & 0.080 & 6  & 0.060 & 16 & 沈阳   & 0.078 & 16 & 0.037 & 22 & 0.012 & 34 \\
+南京 & 0.089 & 12 & 0.054 & 14 & 0.057 & 17 & 呼和浩特 & 0.011 & 34 & 0.024 & 31 & 0.007 & 35 \\
+昆明 & 0.064 & 19 & 0.049 & 17 & 0.050 & 18 &      &       &    &       &    &       &    \\ \bottomrule
+\end{tabular}}
+\end{center}\vspace{5mm}
+\vspace{12mm}
+\begin{center}{\sz
+{\textbf{表3\ \  2017年35个大中城市房地产系统耦合度、协调度和耦合协调度}}\\
+\setlength{\tabcolsep}{1.2mm}
+\begin{tabular}{cccccccccccccc}
+\hline
+城市 & 耦合度   & 排名 & 协调度   & 排名 & 耦合协调度 & 排名 & 城市   & 耦合度   & 排名 & 协调度   & 排名 & 耦合协调度 & 排名 \\ \hline
+重庆 & 0.894 & 29 & 0.413 & 1  & 0.608 & 1  & 厦门   & 0.860 & 33 & 0.102 & 17 & 0.296 & 19 \\
+上海 & 0.985 & 13 & 0.365 & 2  & 0.600 & 2  & 南昌   & 0.998 & 2  & 0.082 & 22 & 0.286 & 20 \\
+北京 & 0.958 & 27 & 0.286 & 3  & 0.524 & 3  & 长春   & 0.974 & 19 & 0.081 & 23 & 0.280 & 21 \\
+成都 & 0.994 & 5  & 0.245 & 5  & 0.493 & 4  & 哈尔滨  & 0.877 & 30 & 0.089 & 20 & 0.279 & 22 \\
+杭州 & 0.964 & 23 & 0.252 & 4  & 0.493 & 5  & 济南   & 0.981 & 15 & 0.073 & 24 & 0.267 & 23 \\
+郑州 & 0.965 & 22 & 0.197 & 6  & 0.436 & 6  & 沈阳   & 0.775 & 34 & 0.087 & 21 & 0.260 & 24 \\
+深圳 & 0.958 & 26 & 0.176 & 7  & 0.410 & 7  & 南宁   & 0.944 & 28 & 0.065 & 25 & 0.248 & 25 \\
+广州 & 0.986 & 12 & 0.170 & 9  & 0.409 & 8  & 石家庄  & 0.987 & 11 & 0.056 & 27 & 0.235 & 26 \\
+武汉 & 0.971 & 21 & 0.171 & 8  & 0.407 & 9  & 大连   & 0.871 & 31 & 0.063 & 26 & 0.234 & 27 \\
+西安 & 0.974 & 20 & 0.159 & 10 & 0.394 & 10 & 贵阳   & 0.993 & 6  & 0.054 & 29 & 0.231 & 28 \\
+天津 & 0.960 & 25 & 0.157 & 11 & 0.388 & 11 & 银川   & 0.976 & 17 & 0.054 & 28 & 0.229 & 29 \\
+长沙 & 0.987 & 9  & 0.133 & 12 & 0.362 & 12 & 海口   & 0.988 & 8  & 0.045 & 30 & 0.211 & 30 \\
+青岛 & 0.987 & 10 & 0.130 & 13 & 0.358 & 13 & 太原   & 0.978 & 16 & 0.043 & 31 & 0.205 & 31 \\
+南京 & 0.974 & 18 & 0.119 & 14 & 0.341 & 14 & 乌鲁木齐 & 0.999 & 1  & 0.039 & 32 & 0.198 & 32 \\
+合肥 & 0.996 & 3  & 0.105 & 15 & 0.323 & 15 & 兰州   & 0.994 & 4  & 0.033 & 33 & 0.181 & 33 \\
+宁波 & 0.961 & 24 & 0.103 & 16 & 0.315 & 16 & 呼和浩特 & 0.870 & 32 & 0.027 & 34 & 0.154 & 34 \\
+福州 & 0.982 & 14 & 0.100 & 18 & 0.313 & 17 & 西宁   & 0.766 & 35 & 0.025 & 35 & 0.139 & 35 \\
+昆明 & 0.992 & 7  & 0.095 & 19 & 0.307 & 18 &      &       &    &       &    &       &    \\ \hline
+\end{tabular}}
+\end{center}\vspace{2mm}
+
+\sub{3.1\ \ 城市房地产供给结构的平衡性与充分性特征}
+\vspace{2mm}\begin{center}
+\includegraphics[width=0.75\linewidth]{1.pdf}\\
+{\bf \sz 图1\ \
+2017年35个大中城市住宅-商业-办公供给能力三维分布图}
+\end{center}\vspace{2mm}
+
+将表2的计算结果呈现在图1可以看出, 各城市住宅地产、商业地产和办公地产的供给能力存在显著差异, 但是仅从单一产品维度无法揭示城市房地产供给结构水平。
+\vspace{2mm}\begin{center}
+\includegraphics[width=0.57\linewidth]{2a.pdf}
+\includegraphics[width=0.415\linewidth]{2b.pdf}\\
+{\bf \sz 图2\ \
+2017年35个大中城市房地产耦合度、协调度和耦合协调度}
+\end{center}\vspace{2mm}
+
+将表3的计算结果呈现在图2(左), 以35个大中城市的中位数划分四个区域可以看出: 西宁、沈阳、呼和浩特、大连、哈尔滨、南宁和长春的耦合度与协调度均较低, 表明这些城市房地产供给结构的平衡性与充分性均较弱; 上海、成都、广州、长沙、青岛、合肥和南京的耦合度与协调度均较高, 表明这些城市房地产供给结构的平衡性与充分性均较强; 福州、昆明、南昌、济南、石家庄、银川、贵阳、海口、太原、兰州和乌鲁木齐的耦合度较高但协调度较低, 表明这些城市房地产供给结构的平衡性较强但充分性较弱; 重庆、北京、杭州、郑州、深圳、武汉、西安、天津、宁波和厦门的协调度较高但耦合度较低, 表明这些城市房地产供给结构的充分性较强但平衡性较弱。
+
+将表3的排序结果呈现在图2(右)可以看出: 重庆、上海、北京、杭州、郑州、深圳、武汉、西安、天津、宁波、厦门、哈尔滨、沈阳和大连的耦合度排名显著低于协调度排名, 合肥、昆明、南昌、济南、石家庄、贵阳、银川、海口、太原、乌鲁木齐和兰州的耦合度排名显著高于协调度排名。产生这些悬殊排名的原因是, 耦合度模型受低极端值的影响出现了“一丑遮百俊”的片面结论, 协调度模型放大了高极端值的影响出现“一俊遮百丑”的片面结论。可以看出, 耦合协调度降低了极端值对最终结果的不良影响, 避免了耦合度模型“一丑遮百俊”和协调度模型“一俊遮百丑”的片面结论, 反映了城市房地产供给结构的平衡充分性水平。总体来看, 2017年我国城市房地产供给结构的平衡性较强但充分性较弱, 平衡充分性水平整体偏低且城市间差异显著。
+
+\sub{3.2\ \ 城市房地产供给结构的区域性特征}
+\vspace{8mm}\begin{center}
+\includegraphics[width=0.45\linewidth]{3a1.pdf}
+\includegraphics[width=0.415\linewidth]{3b.pdf}\\
+{\bf \sz 图3\ \
+2017年35个大中城市房地产耦合协调度区域分布}
+\end{center}\vspace{8mm}
+
+将表3耦合协调度按大小比例划分为五个等级呈现在图3(左)可以看出: 耦合协调度排名前10\%的重庆、上海、北京、成都和杭州划为A级城市, 这些房地产供给结构平衡充分性强的城市主要位于首都和长江流域; 耦合协调度排名前10\%-30\%的郑州、深圳、广州、武汉、西安和天津划为B级城市, 这些平衡充分性较强的城市主要位于首都周边和长江流域; 耦合协调度排名前30\%-50\%的长沙、青岛、南京、合肥、宁波、福州和昆明划为C 级城市, 这些平衡充分性一般的城市主要位于东部沿海; 耦合协调度排名50\%-70\%的厦门、南昌、长春、哈尔滨、济南、沈阳和南宁划为D级城市, 这些平衡充分性较弱的城市主要位于东北地区和西南地区; 耦合协调度排名后30\%的石家庄、大连、贵阳、银川、海口、太原、乌鲁木齐、兰州、呼和浩特和西宁列为E级城市, 这些平衡充分性弱的城市主要位于西北地区和西南地区。
+
+将表3耦合协调度按所属主要城市群呈现在图3(右)可以看出: 长三角、京津冀和成渝城市群的房地产供给结构差异较大, 上海、北京、重庆的平衡充分性明显强于城市群中其他城市, 粤港澳、长江中游和山东半岛城市群的城市差异并不明显。此外, 已公布的九大国家中心城市位列前十, 可以推测排名靠前的杭州、深圳、长沙和青岛的城市房地产供给结构水平极有可能支撑其进入国家中心城市行列。总体来看, 2017 年我国城市房地产供给结构的区域性特征明显, 西北部、西南部和东北部城市的平衡充分性弱于东部地区, 国家城市群中心城市的平衡充分性较强。
+
+
+\sub{3.3\ \ 城市房地产供给结构的时序性特征}
+\vspace{2mm}\begin{center}
+\includegraphics[width=0.6\linewidth]{4.pdf}\\
+{\bf \sz 图4\ \
+2005-2017年35个大中城市房地产耦合协调度时序分布}
+\end{center}\vspace{2mm}
+
+
+采用同样的方法对2005-2017年35个大中城市房地产的耦合协调度进行测算, 最终结果如图4所示: 北京、上海和重庆始终高于其他城市, 但北京近几年下降明显逐渐被上海和重庆超越, 重庆的发展趋势尤为凸出, 这得益于重庆和上海的城市协调发展管理理念; 成都、杭州、郑州、武汉、西安、长沙、福州、昆明、南昌、济南、石家庄和海口的排名呈现上涨趋势; 青岛、南京、合肥、厦门、长春、哈尔滨、南宁、贵阳、银川和兰州的排名基本平稳; 而深圳、广州、天津、宁波、沈阳、大连、太原、乌鲁木齐、呼和浩特和西宁的排名呈现下降趋势。总体来看, 我国城市房地产供给结构平衡充分性的城市差异在逐年收窄, 2015年之前整体呈现上涨趋势, 在经历2015年“房地产去库存”之后我国城市房地产供给结构水平整体趋于平稳健康发展。
+
+
+\SUB{4\ \ 结论}
+
+房地产的平稳健康发展是城市高质量发展的关键支撑, 房地产的平衡充分发展是满足人民日益增长的居住、就业和商业等生活需要的重要保障, 而我国城市房地产是否实现平衡充分发展以及发展是否平稳健康并无定论。本文在供给侧结构视角下分别从产品层面和区域层面探究我国城市房地产的供给结构水平, 分析城市住宅地产-办公地产-商业地产的耦合协调关系, 揭示城市房地产供给结构的平衡性、充分性、区域性和时序性特征。对2005-2017年的实证分析结果表明: (1)我国城市房地产供给结构的平衡性较强但充分性较弱, 整体平衡充分性水平偏低且城市间差异显著; (2)城市房地产供给结构的区域性特征明显, 西北部、西南部和东北部城市的平衡充分性弱于东部地区, 国家城市群中心城市的平衡充分性较强; (3)城市房地产供给结构平衡充分性的城市差异在逐年收窄, 城市房地产供给结构水平整体趋于平稳健康发展。
+
+基于以上研究结论衍生出以下三点重要政策启示:
+
+第一, 深入研究城市住宅-办公-商业的耦合规律, 揭示我国城市房地产的供给结构水平, 推进城市住宅-办公- 商业的协调发展。应向我国城市管理者推广协调发展理念, 学习上海和重庆的先进经验, 探索更科学的发展方式。
+
+第二, 持续深化房地产供给侧结构性改革, 提升我国城市房地产供给结构水平, 促进城市房地产平衡充分发展。当前应以提高协调度为主促进整体平衡充分发展, 发挥中心城市的带动作用, 因城施策、分类调控、缩小差距, 西北部、西南部和东北部城市应着力提升平衡充分性水平。
+
+第三, 加快建立房地产长效管理调控机制, 推动城市房地产供给结构良性演进, 促进城市房地产平稳健康发展。应从城市规划和土地供给的源头科学施策, 在城市系统维度优化房地产供给结构。
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%参考文献%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\REFERENCE
+
+{\small \baselineskip 12pt
+
+%为反映论文的学术水平和创新程度,请主要引用最近3 年以内发表的文献(最好引用期刊类文献).
+%作者可在本刊网站: http://www.sysengi.com免费下载查阅创刊以来的所有论文全文.
+%参考文献列表必须按正文中引用的先后顺序排序,所有被引用的文献须在正文中标明引用位置:
+%不做句子成份的文献以上角标形式标引,直接用$^{[1]}$形式标引即可,做句子成份的文献则与正文平排.
+%对于中外文的个人著者,一律采用姓前名后的著录方式.用汉语拼音书写的中国著者姓用全拼,名用缩写;欧美著者的名用缩写字母;缩写名后不用缩写点,
+%例如: Zhang J T, Calms R B. 作者数量多于三个人时, 在第三个作者后面加``, 等" 或``, et al".作者名之间用逗号分隔,不用``and".
+
+
+
+
+\REF{[1]} Kain J F. Housing segregation, negro employment, and metropolitan decentralization[J]. The quarterly journal of economics, 1968, 82(2): 175-197.
+\REF{[2]} Kain J F. The spatial mismatch hypothesis: three decades later[J]. Housing policy debate, 1992, 3(2): 371-460.
+\REF{[3]} Gobillon L, Selod H, Zenou Y. The mechanisms of spatial mismatch[J]. Urban studies, 2007, 44(12): 2401-2427.
+\REF{[4]} Fan Y. The planners’ war against spatial mismatch: Lessons learned and ways forward[J]. Journal of Planning Literature, 2012, 27(2): 153-169.
+\REF{[5]} 周江评. “空间不匹配”假设与城市弱势群体就业问题:美国相关研究及其对中国的启示[J].现代城市研究,2004(9):8-14.\\
+Zhou Z F. Spatial Mismatch Hypothesis and Employment of the Disadvantaged Social Group:Research Evolution in the U.S. and Implications for China[J].Modern Urban Research ,2004(9):8-14.
+
+\REF{[6]} 郑思齐, 龙奋杰, 王轶军, 等. 就业与居住的空间匹配——基于城市经济学角度的思考[J]. 城市问题, 2007, 6: 55-62.\\
+Zheng S Q, Long F J, Wang Y J, et al. On the spatial match between employment and housing:thoughts from the point of view of urban economics[J]. Urban Problems, 2007, 6: 55-62.
+
+\REF{[7]} 周素红, 林耿, 闫小培. 广州市消费者行为与商业业态空间及居住空间分析[J]. 地理学报, 2008, 63(4): 395-404.\\
+Zhou S H, Lin G, Yan X P. The Relationship among Consumer's Travel Behavior, Urban Commercial and Residential Spatial Structure in Guangzhou, China[J]. Acta Geographica Sinica, 2008, 63(4): 395-404.
+
+\REF{[8]} 吴丹贤, 周素红. 基于日常购物行为的广州社区居住- 商业空间匹配关系[J]. 地理科学, 2017, 37(2): 228-235.\\
+Wu D X, Zhou S H. The Matching Pattern of Housing-Shopping Space Based on Residents’Daily Shopping Behaviors: A Case Study of Communities in Guangzhou, China[J]. Scientia Geographica Sinica, 2017, 37(2): 228-235.
+
+\REF{[9]} 陈阳, 岳文泽, 高佳斌. 城市商业综合体商圈划分及其对住宅的增值效应—— 以杭州主城区为例[J]. 经济地理, 2017, 37(11): 68-75.\\
+Chen Y, Yue W Z, Gao J B. Identifying Commercial Complex Trade Areas and Its Value-Added Impact on Housing: The Case of Hangzhou[J]. Economic Geography , 2017, 37(11): 68-75.
+
+
+\REF{[10]} 申庆喜, 李诚固, 周国磊, 等. 2002-2012 年长春市城市功能空间耦合研究[J]. 地理研究, 2015, 34(10): 1897-1910.\\
+Shen Q X, Li C G, Zhou G L, et al. The coupling of functional urban spaces: A case study of Changchun from 2002 to 2012[J]. Geographical Research, 2015, 34(10): 1897-1910.
+
+\REF{[11]} 韩会然, 杨成凤, 宋金平. 城市居住与就业空间关系研究进展及展望[J]. 人文地理, 2014, 29(6): 24-31.\\
+Han H R, Yang C F, Song J P. PROGRESS AND PROSPECTS OF JOBS-HOUSING SPATIAL RELATIONSHIP RESEARCH[J]. Human Geography , 2014, 29(6): 24-31.
+
+\REF{[12]} 刘志林, 王茂军, 柴彦威. 空间错位理论研究进展与方法论评述[J]. 人文地理, 2010, 25(1): 1-6.\\
+Liu Z L, Wang M J, Chai Y W. SPATIAL MISMATCH THEORY:A REVIEW ON EMPIRICAL RESEARCH AND METHODOLOGY[J].  Human Geography, 2010, 25(1): 1-6.
+
+\REF{[13]} Gaube V, Remesch A. Impact of urban planning on household's residential decisions: An agent-based simulation model for Vienna[J]. Environmental Modelling \& Software, 2013, 45: 92-103.
+
+\REF{[14]} 刘永健, 耿弘, 孙文华. 我国建设用地资源错配的测算, 因素分解及产出损失研究[J]. 系统工程理论与实践, 2019, 39(9): 2263-2271.\\
+Liu Y J, Geng H, Sun W H. Research on the resource misallocation calculation, factor decomposition, and output loss of the construction land in China[J]. Systems Engineering-Theory \& Practice, 2019, 39(9): 2263-2271.
+
+\REF{[15]} 谢冬水. 土地供给结构扭曲与中国城市化滞后[J]. 经济学报, 2018 (1): 4.\\
+Xie D S. Land Supply Structure Distortion and China's under Urbanization[J]. China Journal of Economics, 2018 (1): 4.
+
+\REF{[16]} 李勇刚. 土地资源错配阻碍了经济高质量发展吗?基于中国35个大中城市的实证研究[J].南京社会科学, 2019 (10): 5.\\
+Li Y G. Does Land Ｒesource Misallocation Hinder High-quality Economic Development?: Empirical Study Based on 35 Large and Medium Cities in China[J].Social Sciences in Nanjing, 2019 (10): 5.
+
+\REF{[17]} Horner M W, Marion B M. A spatial dissimilarity-based index of the jobs—housing balance: Conceptual framework and empirical tests[J]. Urban Studies, 2009, 46(3): 499-517.
+
+\REF{[18]} 赵振宇,田金信,赵振宁.住宅供给结构均衡性的技术评价及预测[J].哈尔滨工程大学学报,2007(01):35-39.\\
+Zhao Z Y, Tian J X, Zhao Z N, On the evaluation and prediction of the equilibrium of housing supply structure[J]. Journal of Harbin Engineering University ,2007(01):35-39.
+
+\REF{[19]} 邹士年. 房地产市场供给侧存在的问题及对策[J]. 宏观经济管理, 2016(11).
+\REF{[20]} 方建国.房地产市场治理长效机制建设探析[J].宏观经济管理,2019(03):72-77.\\
+Fang J G. An analysis on developing a long-term mechanism for governance of the real estate market[J].Macroeconomic Management,2019(03):72-77.
+
+\REF{[21]} 施建刚,李婕.基于前景值评价法的上海住房保障政策效应研究[J].系统工程理论与实践,2019,39(01):89-99.\\
+Shi J G, Li J. An analysis on developing a long-term mechanism for governance of the real estate market[J].Systems Engineering-Theory \& Practice, 2019,39(01):89-99.
+
+\REF{[22]} 余亮亮, 蔡银莺. 土地供给结构、财政压力与房价—— 来自广东省的经验分析[J]. 中国土地科学, 2018, 32(8): 30-36.\\
+Yu L L, Cai Y Y. Land Supply Structure, Financial Pressure and Housing Price: Empirical Evidence from Guangdong Province[J]. China Land Science, 2018, 32(8): 30-36.
+
+
+\REF{[23]} 周守昌. 电路原理. 北京: 高等教育出版社, 2004: 247-250
+\REF{[24]} 廖重斌. 环境与经济协调发展的定量评判及其分类体系--以珠江三角洲城市群为例[J]. 热带地理, 1999, 19(2): 171-177.\\
+Liao Z B. QUANTITAITVE JUDGEMENT AND CLASSIFICATION SYSTEM FOR COORDINATED DEVELOPMENT OF ENVIRONMENT AMD ECONOMY———A Case Study of the City Group in the Pearl River Delta[J]. Tropical Geography, 1999, 19(2): 171-177.
+
+\REF{[25]} 刘耀彬,李仁东,宋学锋.中国城市化与生态环境耦合度分析[J].自然资源学报,2005,20(1):105-112\\
+Liu Y B, Li R D, Song X F. Analysis of Coupling Degrees of Urbanization and Ecological Environment in China[J].Journal of Natural Resources,2005,20(1):105-112
+
+\REF{[26]}Yan X, Chen M, Chen M Y. Coupling and Coordination Development of Australian Energy, Economy, and Ecological Environment Systems from 2007 to 2016[J]. Sustainability, 2019, 11(23): 6568.
+\REF{[27]} Han D, Yu D, Cao Q. Assessment on the features of coupling interaction of the food-energy-water nexus in China[J]. Journal of Cleaner Production, 2019: 119379.
+\REF{[28]} Zhang Y, Su Z, Li G, et al. Spatial-temporal evolution of sustainable urbanization development: A perspective of the coupling coordination development based on population, industry, and built-up land spatial agglomeration[J]. Sustainability, 2018, 10(6): 1766.
+\REF{[29]} 唐晓华, 张欣珏, 李阳. 中国制造业与生产性服务业动态协调发展实证研究[J]. 经济研究, 2018 (3): 7.\\
+Tang X H, Zhang X Y, Li Y. Dynamic Coordination Development in China's Manufacturing and Manufacturing-related Service Industries[J]. Economic Research Journal, 2018 (3): 7.
+
+\REF{[30]} 丛晓男. 耦合度模型的形式, 性质及在地理学中的若干误用[J]. 经济地理, 2019 (4): 3.\\
+Cong X N. Expression and Mathematical Property of Coupling Model, and Its Misuse in Geographical Science[J]. Economic Geography, 2019 (4): 3.
+
+\REF{[31]} 诸大建.基于PSR方法的中国城市绿色转型研究[J].同济大学学报(社会科学版),2011,22(04):37-47.\\
+Zhu D J, Studies on China Urban Green Transition Based on PSR Analysis[J].Journal of Tongji University(Social Science Section),2011,22(04):37-47.
+
+\REF{[32]} 梅国平. 基于复相关系数法的公司绩效评价实证研究[J]. 管理世界, 2004, 1: 145-146.
+\REF{[33]} 施建刚等. 中国房地产白皮书:中国城市房地产投资价值研究报告[M]. 同济大学出版社, 2014.
+
+
+
+}
+
+
+
+
+
+
+
+
+
+\end{document}
